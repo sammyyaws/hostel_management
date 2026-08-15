@@ -3,21 +3,30 @@
 import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import {
-  FaTimes,
-  FaUserShield,
-  FaSignOutAlt,
-} from "react-icons/fa";
-import { dashboardNavigation } from "./DashboardNavigation";
+import { FaTimes, FaSignOutAlt } from "react-icons/fa";
+
+interface NavigationItem {
+  name: string;
+  href: string;
+  icon: React.ElementType;
+}
 
 interface DashboardMobileMenuProps {
   isOpen: boolean;
   onClose: () => void;
+  navigation: NavigationItem[];
+  portalName: string;
+  portalSubtitle: string;
+  portalIcon: React.ElementType;
 }
 
 export default function DashboardMobileMenu({
   isOpen,
   onClose,
+  navigation,
+  portalName,
+  portalSubtitle,
+  portalIcon: PortalIcon,
 }: DashboardMobileMenuProps) {
   const pathname = usePathname();
 
@@ -37,16 +46,16 @@ export default function DashboardMobileMenu({
         <div className="flex items-center justify-between px-6 py-5">
           <div className="flex items-center gap-3">
             <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[#006d77]">
-              <FaUserShield className="text-xl" />
+              <PortalIcon className="text-xl" />
             </div>
 
             <div>
               <h2 className="text-base font-bold">
-                Admin Portal
+                {portalName}
               </h2>
 
               <p className="text-[11px] text-white/70">
-                System Management
+                {portalSubtitle}
               </p>
             </div>
           </div>
@@ -64,7 +73,7 @@ export default function DashboardMobileMenu({
 
         {/* Navigation */}
         <nav className="flex flex-1 flex-col gap-1 overflow-y-auto px-4 py-3">
-          {dashboardNavigation.map((item) => {
+          {navigation.map((item) => {
             const Icon = item.icon;
 
             const isActive =
@@ -83,7 +92,6 @@ export default function DashboardMobileMenu({
                 }`}
               >
                 <Icon className="text-lg" />
-
                 <span>{item.name}</span>
               </Link>
             );

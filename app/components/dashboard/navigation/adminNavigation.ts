@@ -10,7 +10,7 @@ import {
   FaCog,
 } from "react-icons/fa";
 
-export const dashboardNavigation = [
+export const adminNavigation = [
   {
     name: "Dashboard",
     href: "/admin",

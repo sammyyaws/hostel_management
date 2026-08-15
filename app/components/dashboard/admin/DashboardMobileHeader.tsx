@@ -5,17 +5,26 @@ import { FaBars } from "react-icons/fa";
 
 interface DashboardMobileHeaderProps {
   onMenuClick: () => void;
+  portalName: string;
+  portalSubtitle: string;
 }
 
 export default function DashboardMobileHeader({
   onMenuClick,
+  portalName,
+  portalSubtitle,
 }: DashboardMobileHeaderProps) {
   return (
     <header className="fixed left-0 top-0 z-40 flex h-16 w-full items-center justify-between bg-[#00535b] px-5 text-white shadow-sm md:hidden">
       {/* Portal Name */}
       <div>
-        <h1 className="text-lg font-bold">Admin Portal</h1>
-        <p className="text-[11px] text-white/70">System Management</p>
+        <h1 className="text-lg font-bold">
+          {portalName}
+        </h1>
+
+        <p className="text-[11px] text-white/70">
+          {portalSubtitle}
+        </p>
       </div>
 
       {/* Hamburger */}

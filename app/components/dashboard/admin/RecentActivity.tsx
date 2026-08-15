@@ -20,7 +20,7 @@ export default function RecentActivity({
   items = defaultItems,
 }: RecentActivityProps) {
   return (
-    <section className="rounded-2xl border border-outline-variant bg-surface-container-lowest p-6 shadow-sm">
+    <section tabIndex={0} className="rounded-2xl border border-outline-variant bg-surface-container-lowest p-6 shadow-sm transition-colors duration-200 ease-in-out hover:border-primary focus:outline-none focus:border-primary">
       <div className="mb-4 flex items-center justify-between">
         <h3 className="text-xl font-semibold text-on-surface">Recent Activity</h3>
         <button type="button" className="text-sm font-medium text-primary">
@@ -30,7 +30,7 @@ export default function RecentActivity({
 
       <div className="space-y-4">
         {items.map((item) => (
-          <div key={`${item.title}-${item.time}`} className="flex gap-3 rounded-xl bg-surface p-3">
+          <div key={`${item.title}-${item.time}`} tabIndex={0} className="flex gap-3 rounded-xl bg-surface p-3 border border-outline-variant transition-colors duration-200 ease-in-out hover:border-primary focus:outline-none focus:border-primary focus:shadow-sm">
             <div
               className={`mt-1 h-3 w-3 rounded-full ${
                 item.tone === "success"
