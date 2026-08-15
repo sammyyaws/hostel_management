@@ -39,13 +39,18 @@ export default function SignupPage() {
 		<div className="min-h-full flex">
 			<div className="flex-1 flex flex-col justify-center items-center px-4 sm:px-6 bg-surface w-full">
 				<div className="mx-auto w-full max-w-sm lg:w-96">
-					<div>
-						<h2 className="mt-8 font-headline-lg text-headline-lg text-primary">TYB Hostel</h2>
+					<div className="items-center text-center justify-center ">
+							<span className="font-headline-md text-headline-lg text-primary font-bold tracking-tight">TYB Hostel</span>
 						<p className="mt-2 font-body-lg text-body-lg text-on-surface-variant">Create your student account.</p>
 					</div>
 
-					<div className="mt-8">
+					<div className="mt-8 bg-surface-container-lowest shadow-md border-t-primary border-t-3 rounded-lg p-6 hover:shadow-xl transition-shadow duration-300">
 						<div className="mt-6">
+
+
+
+
+
 							<FormikForm initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
 								<div className="space-y-6">
 									<div className="grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-2">
