@@ -6,7 +6,7 @@ import * as Yup from "yup";
 import FormInput from "../components/form/FormInput";
 import FormSelect from "../components/form/FormSelect";
 import FormTextarea from "../components/form/FormTextarea";
-import InfoCard from "../components/cards/InfoCard";
+import InfoCard from "../components/UIComponents/InfoCard";
 import { FaPhone, FaMapMarkerAlt, FaEnvelope } from "react-icons/fa";
 
 const initial = { fullName: "", email: "", subject: "General Inquiry", message: "" };

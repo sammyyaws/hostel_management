@@ -1,5 +1,5 @@
 import React from "react";
-import RoomCard from "../components/cards/RoomCard";
+import RoomCard from "../components/UIComponents/RoomCard";
 
 const rooms = [
   {
