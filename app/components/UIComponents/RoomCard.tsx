@@ -86,8 +86,8 @@ export default function RoomCard({
               <button className="w-full rounded-lg border border-outline bg-transparent px-4 py-2 text-sm font-medium text-on-surface transition-colors hover:bg-surface-container sm:flex-1">
                 View Details
               </button>
-              <button className="w-full rounded-lg bg-secondary-container px-4 py-2 text-sm font-medium text-on-secondary-container transition-colors hover:bg-secondary-fixed-dim sm:flex-1">
-                Apply Now
+              <button className="hidden rounded bg-primary px-5 py-2 text-sm font-semibold text-on-primary transition-colors hover:bg-primary-container md:block">
+                Book Now
               </button>
             </>
           )}

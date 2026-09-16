@@ -1,6 +1,6 @@
-import AllocationStats from "../../../components/dashboard/admin/AllocationStats";
-import AllocationFilters from "../../../components/dashboard/admin/AllocationFilters";
-import AllocationsTable from "../../../components/dashboard/admin/AllocationsTable";
+import AllocationStats from "../../../components/dashboard/admin/allocations/AllocationStats";
+import AllocationFilters from "../../../components/dashboard/admin/allocations/AllocationFilters";
+import AllocationsTable from "../../../components/dashboard/admin/allocations/AllocationsTable";
 
 export default function AllocationsPage() {
   return (

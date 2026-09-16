@@ -3,7 +3,8 @@ import RoomCard from "../UIComponents/RoomCard";
 
 const rooms = [
   {
-    image: "/rooms/twin-share.jpg",
+    image:
+      "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1200&q=80",
     title: "Single Room (1-Bed)",
     badge: "Popular",
     description:
@@ -13,11 +14,12 @@ const rooms = [
       "1 Single Bed",
       "Single Study Desk",
       "En-suite Bathroom",
-      "Kitchen "
+      "Kitchen ",
     ],
   },
- {
-    image: "/rooms/twin-share.jpg",
+  {
+    image:
+      "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1200&q=80",
     title: "Twin Share (2-Bed)",
     badge: "Popular",
     description:
@@ -27,11 +29,12 @@ const rooms = [
       "2 Single Beds",
       "Shared Study Desk",
       "En-suite Bathroom",
-      "Kitchen "
+      "Kitchen ",
     ],
   },
   {
-    image: "/rooms/quad-share.jpg",
+    image:
+      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=1200&q=80",
     title: "Triple Share (3-Bed)",
     description:
       "An economical option for students looking for an affordable and sociable living environment.",
@@ -70,7 +73,7 @@ export default function RoomTypes() {
         </div>
 
         {/* Room Cards */}
-        <div className="grid grid-cols-1  gap-8 ">
+        <div className="grid grid-cols-3  gap-8 ">
           {rooms.map((room) => (
             <RoomCard
               key={room.title}

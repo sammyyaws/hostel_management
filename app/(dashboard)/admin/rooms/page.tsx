@@ -1,6 +1,6 @@
-import RoomStats from "../../../components/dashboard/admin/RoomStats";
-import RoomFilters from "../../../components/dashboard/admin/RoomFilters";
-import RoomsTable from "../../../components/dashboard/admin/RoomsTable";
+import RoomStats from "../../../components/dashboard/admin/rooms/RoomStats";
+import RoomFilters from "../../../components/dashboard/admin/rooms/RoomFilters";
+import RoomsTable from "../../../components/dashboard/admin/rooms/RoomsTable";
 
 export default function RoomsPage() {
   return (

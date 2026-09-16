@@ -1,4 +1,4 @@
-import RoomHeader from "../../../../components/dashboard/admin/RoomHeader";
+import RoomHeader from "../../../../components/dashboard/admin/rooms/RoomHeader";
 import BedGrid from "../../../../components/dashboard/admin/BedGrid";
 
 type RoomPageProps = {

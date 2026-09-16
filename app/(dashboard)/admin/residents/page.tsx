@@ -1,5 +1,5 @@
-import ResidentStats from "../../../components/dashboard/admin/ResidentStats";
-import ResidentsTable from "../../../components/dashboard/admin/ResidentsTable";
+import ResidentStats from "../../../components/dashboard/admin/residents/ResidentStats";
+import ResidentsTable from "../../../components/dashboard/admin/residents/ResidentsTable";
 
 export default function ResidentsPage() {
   return (

@@ -59,6 +59,18 @@ const allocations: Allocation[] = [
   },
 ];
 
+function statusStyles(status: string) {
+  switch (status) {
+    case "Active":
+      return "bg-green-50 text-green-700";
+
+    case "Pending":
+      return "bg-yellow-50 text-yellow-700";
+
+    default:
+      return "bg-yellow-50 text-yellow-700";
+  }
+}
 export default function AllocationsTable() {
   return (
     <section className="overflow-hidden rounded-2xl border border-outline-variant bg-surface-container-lowest shadow-sm">
@@ -135,7 +147,13 @@ export default function AllocationsTable() {
                 </td>
 
                 <td className="px-6 py-4">
-                  <StatusBadge status={allocation.status} />
+                  <span
+                    className={`inline-flex rounded-full px-3 py-1 text-xs font-medium ${statusStyles(
+                      allocation.status
+                    )}`}
+                  >
+                    {allocation.status}
+                  </span>
                 </td>
 
                 <td className="px-6 py-4">
@@ -190,7 +208,13 @@ export default function AllocationsTable() {
                 </p>
               </div>
 
-              <StatusBadge status={allocation.status} />
+              <span
+                className={`inline-flex rounded-full px-3 py-1 text-xs font-medium ${statusStyles(
+                  allocation.status
+                )}`}
+              >
+                {allocation.status}
+              </span>
 
             </div>
 
@@ -225,22 +249,3 @@ export default function AllocationsTable() {
   );
 }
 
-function StatusBadge({
-  status,
-}: {
-  status: Allocation["status"];
-}) {
-  const styles = {
-    Active: "bg-primary-container text-primary",
-    Pending: "bg-secondary-container text-on-secondary-container",
-    Cancelled: "bg-error-container text-on-error-container",
-  };
-
-  return (
-    <span
-      className={`inline-flex rounded-full px-3 py-1 text-xs font-medium ${styles[status]}`}
-    >
-      {status}
-    </span>
-  );
-}
