@@ -1,8 +1,5 @@
+import ReportsPage from "@/components/dashboard/admin/reports/ReportsPage";
+
 export default function Page() {
-  return (
-    <div className="p-6">
-      <h1 className="text-2xl font-semibold">Reports</h1>
-      <p className="mt-2 text-sm text-on-surface-variant">Placeholder page for Reports.</p>
-    </div>
-  );
+  return <ReportsPage />;
 }
