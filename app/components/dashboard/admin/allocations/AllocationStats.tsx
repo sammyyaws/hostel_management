@@ -23,7 +23,7 @@ export default function AllocationStats() {
       {stats.map((stat) => (
         <div
           key={stat.label}
-          className="rounded-2xl border border-outline-variant bg-surface-container-lowest p-5 shadow-sm"
+          className="rounded-2xl border border-gray-200 bg-surface-container-lowest p-5 shadow-sm"
         >
           <p className="text-sm text-on-surface-variant">
             {stat.label}

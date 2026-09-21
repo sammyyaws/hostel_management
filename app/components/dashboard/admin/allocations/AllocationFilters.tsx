@@ -4,7 +4,7 @@ import { FaSearch, FaPlus } from "react-icons/fa";
 
 export default function AllocationFilters() {
   return (
-    <section className="rounded-2xl border border-outline-variant bg-surface-container-lowest p-5 shadow-sm">
+    <section className="rounded-2xl border border-gray-200 bg-surface-container-lowest p-5 shadow-sm">
 
       <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
 
@@ -15,14 +15,14 @@ export default function AllocationFilters() {
           <input
             type="text"
             placeholder="Search student, room or bed..."
-            className="w-full rounded-lg border border-outline-variant bg-surface py-2.5 pl-10 pr-4 text-sm outline-none transition focus:border-primary"
+            className="w-full rounded-lg border border-gray-200 bg-surface py-2.5 pl-10 pr-4 text-sm outline-none transition focus:border-primary"
           />
         </div>
 
         <div className="flex flex-wrap gap-3">
 
           <select
-            className="rounded-lg border border-outline-variant bg-surface px-4 py-2.5 text-sm text-on-surface outline-none focus:border-primary"
+            className="rounded-lg border border-gray-200 bg-surface px-4 py-2.5 text-sm text-on-surface outline-none focus:border-primary"
           >
             <option>All Status</option>
             <option>Active</option>
@@ -31,7 +31,7 @@ export default function AllocationFilters() {
           </select>
 
           <select
-            className="rounded-lg border border-outline-variant bg-surface px-4 py-2.5 text-sm text-on-surface outline-none focus:border-primary"
+            className="rounded-lg border border-gray-200 bg-surface px-4 py-2.5 text-sm text-on-surface outline-none focus:border-primary"
           >
             <option>All Blocks</option>
             <option>Block A</option>

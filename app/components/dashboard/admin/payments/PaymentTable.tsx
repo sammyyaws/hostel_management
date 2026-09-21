@@ -56,13 +56,13 @@ function statusStyles(status: string) {
 
 export default function PaymentTable() {
   return (
-    <section className="overflow-hidden rounded-2xl border border-outline-variant bg-surface-container-lowest shadow-sm">
+    <section className="overflow-hidden rounded-2xl border border-gray-200 bg-surface-container-lowest shadow-sm">
 
     
     <div className="overflow-x-auto">
       <table className="w-full min-w-[900px] ">
         <thead>
-          <tr className="border-b border-outline-variant bg-surface-container-low text-left">
+          <tr className="border-b border-gray-200 bg-surface-container-low text-left">
             <th className="px-6 py-4 text-xs font-semibold uppercase tracking-wide text-on-surface-variant">
               Payment ID
             </th>
@@ -97,7 +97,7 @@ export default function PaymentTable() {
           {payments.map((payment) => (
             <tr
               key={payment.id}
-              className="border-b border-outline-variant last:border-0 transition hover:bg-surface-container-low"
+              className="border-b border-gray-200 last:border-0 transition hover:bg-surface-container-low"
             >
               <td className="px-6 py-4 text-sm font-medium text-on-surface">
                 {payment.id}

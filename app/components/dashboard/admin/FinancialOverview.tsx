@@ -24,7 +24,7 @@ export default function FinancialOverview({
   items = defaultItems,
 }: FinancialOverviewProps) {
   return (
-    <section tabIndex={0} className="rounded-2xl border border-outline-variant bg-surface-container-lowest p-6 shadow-sm transition-colors duration-200 ease-in-out hover:border-primary focus:outline-none focus:border-primary">
+    <section tabIndex={0} className="rounded-2xl border border-gray-200 bg-surface-container-lowest p-6 shadow-sm transition-colors duration-200 ease-in-out hover:border-primary focus:outline-none focus:border-primary">
       <div className="mb-6 flex items-center justify-between">
         <div>
           <p className="text-sm text-on-surface-variant">Financial Overview</p>
@@ -58,7 +58,7 @@ export default function FinancialOverview({
           <div
             key={item.label}
             tabIndex={0}
-            className="flex items-center justify-between rounded-xl border border-outline-variant bg-surface p-3 transition-colors duration-200 ease-in-out hover:border-primary focus:outline-none focus:border-primary focus:shadow-sm"
+            className="flex items-center justify-between rounded-xl border border-gray-200 bg-surface p-3 transition-colors duration-200 ease-in-out hover:border-primary focus:outline-none focus:border-primary focus:shadow-sm"
           >
             <span className="text-sm text-on-surface-variant">{item.label}</span>
             <div className="text-right">

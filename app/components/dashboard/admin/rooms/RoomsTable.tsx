@@ -79,7 +79,7 @@ export default function RoomsTable() {
       <table className="w-full min-w-[850px]">
 
         <thead>
-          <tr className="border-b border-outline-variant bg-surface-container-low text-left">
+          <tr className="border-b border-gray-200 bg-surface-container-low text-left">
 
             <th className="px-5 py-4 text-xs font-semibold uppercase tracking-wide text-on-surface-variant">
               Room
@@ -116,7 +116,7 @@ export default function RoomsTable() {
 
             <tr
               key={room.id}
-              className="border-b border-outline-variant last:border-0 transition hover:bg-surface-container-low"
+              className="border-b border-gray-200 last:border-0 transition hover:bg-surface-container-low"
             >
 
               {/* Room */}
@@ -228,7 +228,7 @@ export default function RoomsTable() {
       </table>
 
       {/* Footer */}
-      <div className="flex items-center justify-between border-t border-outline-variant p-5 text-sm text-on-surface-variant">
+      <div className="flex items-center justify-between border-t border-gray-200 p-5 text-sm text-on-surface-variant">
 
         <span>
           Showing {rooms.length} rooms

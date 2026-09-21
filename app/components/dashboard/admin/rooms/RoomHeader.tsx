@@ -15,7 +15,7 @@ export default function RoomHeader({
   roomId,
 }: RoomHeaderProps) {
   return (
-    <section className="rounded-2xl border border-outline-variant bg-surface-container-lowest p-6 shadow-sm">
+    <section className="rounded-2xl border border-gray-200 bg-surface-container-lowest p-6 shadow-sm">
 
       {/* Back */}
       <Link
@@ -50,7 +50,7 @@ export default function RoomHeader({
         {/* Actions */}
         <button
           type="button"
-          className="flex items-center justify-center gap-2 rounded-lg border border-outline-variant px-4 py-2.5 text-sm font-medium text-on-surface transition hover:bg-surface-container"
+          className="flex items-center justify-center gap-2 rounded-lg border border-gray-200 px-4 py-2.5 text-sm font-medium text-on-surface transition hover:bg-surface-container"
         >
           <FaEdit />
           Edit Room

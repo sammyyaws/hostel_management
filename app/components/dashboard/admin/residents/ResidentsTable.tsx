@@ -76,10 +76,10 @@ export default function ResidentsTable() {
   );
 
   return (
-    <section className="rounded-2xl border border-outline-variant bg-surface-container-lowest shadow-sm">
+    <section className="rounded-2xl border border-gray-200 bg-surface-container-lowest shadow-sm">
 
       {/* Header */}
-      <div className="flex flex-col gap-4 border-b border-outline-variant p-5 md:flex-row md:items-center md:justify-between">
+      <div className="flex flex-col gap-4 border-b border-gray-200 p-5 md:flex-row md:items-center md:justify-between">
 
         <div>
           <h2 className="text-xl font-semibold text-on-surface">
@@ -102,7 +102,7 @@ export default function ResidentsTable() {
       </div>
 
       {/* Filters */}
-      <div className="flex flex-col gap-3 border-b border-outline-variant p-5 md:flex-row">
+      <div className="flex flex-col gap-3 border-b border-gray-200 p-5 md:flex-row">
 
         {/* Search */}
         <div className="relative flex-1">
@@ -113,14 +113,14 @@ export default function ResidentsTable() {
             placeholder="Search residents..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full rounded-lg border border-outline-variant bg-surface px-10 py-2.5 text-sm text-on-surface outline-none transition focus:border-primary"
+            className="w-full rounded-lg border border-gray-200 bg-surface px-10 py-2.5 text-sm text-on-surface outline-none transition focus:border-primary"
           />
         </div>
 
         {/* Filter */}
         <button
           type="button"
-          className="flex items-center justify-center gap-2 rounded-lg border border-outline-variant px-4 py-2.5 text-sm font-medium text-on-surface transition hover:bg-surface-container"
+          className="flex items-center justify-center gap-2 rounded-lg border border-gray-200 px-4 py-2.5 text-sm font-medium text-on-surface transition hover:bg-surface-container"
         >
           <FaFilter />
           Filter
@@ -133,7 +133,7 @@ export default function ResidentsTable() {
         <table className="w-full min-w-[800px]">
 
           <thead>
-            <tr className="border-b border-outline-variant bg-surface-container-low text-left">
+            <tr className="border-b border-gray-200 bg-surface-container-low text-left">
               <th className="px-5 py-4 text-xs font-semibold uppercase tracking-wide text-on-surface-variant">
                 Resident
               </th>
@@ -166,7 +166,7 @@ export default function ResidentsTable() {
             {filteredResidents.map((resident) => (
               <tr
                 key={resident.id}
-                className="border-b border-outline-variant last:border-0 hover:bg-surface-container-low"
+                className="border-b border-gray-200 last:border-0 hover:bg-surface-container-low"
               >
                 {/* Resident */}
                 <td className="px-5 py-4">
@@ -228,7 +228,7 @@ export default function ResidentsTable() {
       </div>
 
       {/* Footer */}
-      <div className="flex items-center justify-between border-t border-outline-variant p-5 text-sm text-on-surface-variant">
+      <div className="flex items-center justify-between border-t border-gray-200 p-5 text-sm text-on-surface-variant">
         <span>
           Showing {filteredResidents.length} of {residents.length} residents
         </span>

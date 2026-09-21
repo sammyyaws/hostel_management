@@ -7,7 +7,7 @@ export default function PaymentsPage() {
     <section className="overflow-hidden  bg-surface-container-lowest shadow-sm">
 
       {/* Header */}
-      <div className="flex flex-col gap-4 border-b border-outline-variant p-5 sm:flex-row sm:items-center sm:justify-between">
+      <div className="flex flex-col gap-4 border-b border-gray-200 p-5 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <h1 className="text-2xl font-bold text-on-surface">Payments</h1>
 

@@ -12,14 +12,14 @@ export default function PaymentFilters() {
         <input
           type="text"
           placeholder="Search resident or booking ID..."
-          className="w-full rounded-lg border border-outline-variant bg-surface px-4 py-3 pl-11 pr-4 text-sm outline-none transition focus:border-primary"
+          className="w-full rounded-lg border border-gray-200 bg-surface px-4 py-3 pl-11 pr-4 text-sm outline-none transition focus:border-primary"
         />
       </div>
 
       {/* Status */}
       <div className="relative">
         <select
-          className="w-full appearance-none rounded-lg border border-black bg-surface px-4 py-3 pr-10 text-sm text-on-surface-variant outline-none focus:border-black lg:w-44"
+          className="w-full appearance-none rounded-lg border border-gray-200 bg-surface px-4 py-3 pr-10 text-sm text-on-surface-variant outline-none focus:border-black lg:w-44"
           defaultValue="all"
         >
           <option value="all">All Status</option>
@@ -34,7 +34,7 @@ export default function PaymentFilters() {
       {/* Date */}
       <div className="relative">
         <select
-          className="w-full appearance-none rounded-lg border border-outline-variant bg-surface px-4 py-3 pr-10 text-sm text-on-surface-variant outline-none focus:border-primary lg:w-44"
+          className="w-full appearance-none rounded-lg border border-gray-200 bg-surface px-4 py-3 pr-10 text-sm text-on-surface-variant outline-none focus:border-primary lg:w-44"
           defaultValue="all"
         >
           <option value="all">All Dates</option>

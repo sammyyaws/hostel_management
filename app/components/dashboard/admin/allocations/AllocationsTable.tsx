@@ -73,14 +73,14 @@ function statusStyles(status: string) {
 }
 export default function AllocationsTable() {
   return (
-    <section className="overflow-hidden rounded-2xl border border-outline-variant bg-surface-container-lowest shadow-sm">
+    <section className="overflow-hidden rounded-2xl border border-gray-200 bg-surface-container-lowest shadow-sm">
 
       {/* Desktop table */}
       <div className="hidden overflow-x-auto md:block">
 
         <table className="w-full text-left">
 
-          <thead className="border-b border-outline-variant bg-surface">
+          <thead className="border-b border-gray-200 bg-surface">
             <tr>
               <th className="px-6 py-4 text-xs font-semibold text-on-surface-variant">
                 Student
@@ -112,12 +112,13 @@ export default function AllocationsTable() {
             </tr>
           </thead>
 
-          <tbody className="divide-y divide-outline-variant">
+          <tbody >
 
             {allocations.map((allocation) => (
               <tr
                 key={allocation.id}
-                className="transition hover:bg-surface"
+                  className="border-b border-gray-200 last:border-0 transition hover:bg-surface-container-low"
+         
               >
 
                 <td className="px-6 py-4">

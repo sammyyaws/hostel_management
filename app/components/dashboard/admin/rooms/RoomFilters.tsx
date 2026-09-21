@@ -7,7 +7,7 @@ export default function RoomFilters() {
   const [search, setSearch] = useState("");
 
   return (
-    <div className="flex flex-col gap-3 border-b border-outline-variant p-5 md:flex-row">
+    <div className="flex flex-col gap-3 border-b border-gray-200 p-5 md:flex-row">
 
       {/* Search */}
       <div className="relative flex-1">
@@ -18,13 +18,13 @@ export default function RoomFilters() {
           placeholder="Search room number..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="w-full rounded-lg border border-outline-variant bg-surface px-10 py-2.5 text-sm text-on-surface outline-none transition focus:border-primary"
+          className="w-full rounded-lg border border-gray-200 bg-surface px-10 py-2.5 text-sm text-on-surface outline-none transition focus:border-primary"
         />
       </div>
 
       {/* Block */}
       <select
-        className="rounded-lg border border-outline-variant bg-surface px-4 py-2.5 text-sm text-on-surface outline-none focus:border-primary"
+        className="rounded-lg border border-gray-200 bg-surface px-4 py-2.5 text-sm text-on-surface outline-none focus:border-primary"
         defaultValue=""
       >
         <option value="" disabled>
@@ -38,7 +38,7 @@ export default function RoomFilters() {
 
       {/* Status */}
       <select
-        className="rounded-lg border border-outline-variant bg-surface px-4 py-2.5 text-sm text-on-surface outline-none focus:border-primary"
+        className="rounded-lg border border-gray-200 bg-surface px-4 py-2.5 text-sm text-on-surface outline-none focus:border-primary"
         defaultValue=""
       >
         <option value="" disabled>
@@ -52,7 +52,7 @@ export default function RoomFilters() {
       {/* Filter button */}
       <button
         type="button"
-        className="flex items-center justify-center gap-2 rounded-lg border border-outline-variant px-4 py-2.5 text-sm font-medium text-on-surface transition hover:bg-surface-container"
+        className="flex items-center justify-center gap-2 rounded-lg border border-gray-200 px-4 py-2.5 text-sm font-medium text-on-surface transition hover:bg-surface-container"
       >
         <FaFilter />
         Filter

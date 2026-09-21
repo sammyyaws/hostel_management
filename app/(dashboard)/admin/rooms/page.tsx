@@ -22,7 +22,7 @@ export default function RoomsPage() {
         <RoomStats />
 
         {/* Rooms */}
-        <section className="rounded-2xl border border-outline-variant bg-surface-container-lowest shadow-sm">
+        <section className="rounded-2xl border border-gray-200 bg-surface-container-lowest shadow-sm">
 
           <div className="border-b border-outline-variant p-5">
             <div>
