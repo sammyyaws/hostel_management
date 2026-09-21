@@ -1,7 +1,7 @@
 "use client";
 
 import { FaEye } from "react-icons/fa";
-
+import Link from "next/link"
 const payments = [
   {
     id: "PAY-001",
@@ -132,12 +132,14 @@ export default function PaymentTable() {
               </td>
 
               <td className="px-6 py-4 text-right">
-                <button
-                  className="inline-flex h-9 w-9 items-center justify-center rounded-lg text-on-surface-variant transition hover:bg-surface-container hover:text-on-surface"
-                  title="View payment"
-                >
-                  <FaEye />
-                </button>
+                <Link href={`/admin/payments/${payment.id}`}>
+                  <button
+                    className="inline-flex h-9 w-9 items-center justify-center rounded-lg text-on-surface-variant transition hover:bg-surface-container hover:text-on-surface"
+                    title="View payment"
+                  >
+                    <FaEye />
+                  </button>
+                </Link>
               </td>
             </tr>
           ))}
