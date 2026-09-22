@@ -1,8 +1,5 @@
+import SettingsPage from "@/components/dashboard/admin/settings/SettingsPage";
+
 export default function Page() {
-  return (
-    <div className="p-6">
-      <h1 className="text-2xl font-semibold">Settings</h1>
-      <p className="mt-2 text-sm text-on-surface-variant">Placeholder page for Settings.</p>
-    </div>
-  );
+  return <SettingsPage />;
 }
