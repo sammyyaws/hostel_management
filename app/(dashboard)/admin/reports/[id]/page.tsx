@@ -1,0 +1,11 @@
+import ReportDetails from "@/components/dashboard/admin/reports/ReportDetails";
+
+type PageProps = {
+  params: Promise<{ id: string }>;
+};
+
+export default async function Page({ params }: PageProps) {
+  const { id } = await params;
+
+  return <ReportDetails reportId={id} />;
+}

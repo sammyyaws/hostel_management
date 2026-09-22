@@ -4,7 +4,7 @@ import {
   FaEye,
   FaEllipsisV,
 } from "react-icons/fa";
-
+import Link from "next/link";
 type Allocation = {
   id: string;
   student: string;
@@ -160,12 +160,15 @@ export default function AllocationsTable() {
                 <td className="px-6 py-4">
 
                   <div className="flex items-center gap-2">
-
+                    
                     <button
                       type="button"
                       className="rounded-lg p-2 text-on-surface-variant hover:bg-surface-container hover:text-primary"
                     >
-                      <FaEye />
+                      <Link href={`/admin/allocations/${allocation.id}`}>
+                        <FaEye />
+                      </Link>
+                    
                     </button>
 
                     <button

@@ -1,7 +1,7 @@
 "use client";
 
 import { FaSearch, FaPlus } from "react-icons/fa";
-
+import Link from "next/link"
 export default function AllocationFilters() {
   return (
     <section className="rounded-2xl border border-gray-200 bg-surface-container-lowest p-5 shadow-sm">
@@ -39,14 +39,17 @@ export default function AllocationFilters() {
             <option>Block C</option>
           </select>
 
+
+<Link href="/admin/allocations/create" >
           <button
             type="button"
             className="flex items-center gap-2 rounded-lg bg-primary px-4 py-2.5 text-sm font-medium text-white transition hover:bg-primary-container"
           >
             <FaPlus />
             New Allocation
+            
           </button>
-
+</Link>
         </div>
 
       </div>
