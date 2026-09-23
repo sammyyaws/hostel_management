@@ -84,7 +84,7 @@ export default function StaffDetails({ staffId }: StaffDetailsProps) {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 mx-auto max-w-7xl p-4 md:p-8">
       {/* Back */}
       <Link
         href="/admin/settings"
