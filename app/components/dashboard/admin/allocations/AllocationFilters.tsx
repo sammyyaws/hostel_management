@@ -2,7 +2,14 @@
 
 import { FaSearch, FaPlus } from "react-icons/fa";
 import Link from "next/link"
-export default function AllocationFilters() {
+
+type AllocationFiltersProps = {
+  basePath?: string;
+};
+
+export default function AllocationFilters({
+  basePath = "/admin/allocations",
+}: AllocationFiltersProps) {
   return (
     <section className="rounded-2xl border border-gray-200 bg-surface-container-lowest p-5 shadow-sm">
 
@@ -40,7 +47,7 @@ export default function AllocationFilters() {
           </select>
 
 
-<Link href="/admin/allocations/create" >
+<Link href={`${basePath}/create`} >
           <button
             type="button"
             className="flex items-center gap-2 rounded-lg bg-primary px-4 py-2.5 text-sm font-medium text-white transition hover:bg-primary-container"

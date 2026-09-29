@@ -25,16 +25,21 @@ const initialValues = {
   bed: "",
   startDate: "",
 };
+type AllocateBedProps = {
+  basePath?: string;
+};
 
-export default function AllocateBed() {
+export default function AllocateBed({
+  basePath = "/admin/allocations",
+}: AllocateBedProps) {
   return (
     <div className="space-y-6 mx-auto  max-w-7xl p-4 md:p-8">
       {/* Header */}
       <div className="flex items-center gap-3">
         <Link
-          href="/admin/allocations"
-          className="flex h-9 w-9 items-center justify-center rounded-lg border border-gray-200 text-gray-500 hover:bg-gray-50"
-        >
+  href={basePath}
+  className="flex h-9 w-9 items-center justify-center rounded-lg border border-gray-200 text-gray-500 hover:bg-gray-50"
+>
           <FaArrowLeft size={14} />
         </Link>
 
@@ -173,11 +178,12 @@ export default function AllocateBed() {
             {/* Actions */}
             <div className="flex justify-end gap-3">
               <Link
-                href="/admin/allocations"
-                className="rounded-lg border border-gray-200 px-5 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50"
-              >
-                Cancel
-              </Link>
+  href={basePath}
+  className="rounded-lg border border-gray-200 px-5 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50"
+>
+  Cancel
+</Link>
+               
 
               <button
                 type="submit"

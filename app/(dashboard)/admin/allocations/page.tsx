@@ -2,12 +2,17 @@ import AllocationStats from "../../../components/dashboard/admin/allocations/All
 import AllocationFilters from "../../../components/dashboard/admin/allocations/AllocationFilters";
 import AllocationsTable from "../../../components/dashboard/admin/allocations/AllocationsTable";
 
-export default function AllocationsPage() {
+type AllocationsPageProps = {
+  basePath?: string;
+};
+
+export default function AllocationsPage({
+  basePath = "/admin/allocations",
+}: AllocationsPageProps) {
   return (
     <main className="min-h-screen bg-surface p-4 md:p-8">
       <div className="mx-auto max-w-7xl space-y-6">
 
-        {/* Header */}
         <div>
           <h1 className="text-2xl font-bold text-on-surface">
             Allocations
@@ -20,9 +25,9 @@ export default function AllocationsPage() {
 
         <AllocationStats />
 
-        <AllocationFilters />
+        <AllocationFilters basePath={basePath} />
 
-        <AllocationsTable />
+        <AllocationsTable basePath={basePath} />
 
       </div>
     </main>

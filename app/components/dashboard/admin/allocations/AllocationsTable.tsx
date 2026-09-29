@@ -70,8 +70,14 @@ function statusStyles(status: string) {
     default:
       return "bg-yellow-50 text-yellow-700";
   }
-}
-export default function AllocationsTable() {
+}type AllocationsTableProps = {
+  basePath?: string;
+};
+
+
+export default function AllocationsTable({
+  basePath = "/admin/allocations",
+}: AllocationsTableProps) {
   return (
     <section className="overflow-hidden rounded-2xl border border-gray-200 bg-surface-container-lowest shadow-sm">
 
@@ -165,8 +171,7 @@ export default function AllocationsTable() {
                       type="button"
                       className="rounded-lg p-2 text-on-surface-variant hover:bg-surface-container hover:text-primary"
                     >
-                      <Link href={`/admin/allocations/${allocation.id}`}>
-                        <FaEye />
+                   <Link href={`${basePath}/${allocation.id}`}>                        <FaEye />
                       </Link>
                     
                     </button>

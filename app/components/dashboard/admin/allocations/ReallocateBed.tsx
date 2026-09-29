@@ -11,6 +11,7 @@ import {
 
 type ReallocateBedProps = {
   allocationId: string;
+  basePath?: string;
 };
 
 const reallocateSchema = Yup.object({
@@ -29,6 +30,7 @@ const initialValues = {
 
 export default function ReallocateBed({
   allocationId,
+    basePath = "/admin/allocations",
 }: ReallocateBedProps) {
   // Temporary frontend data.
   const resident = {
@@ -44,7 +46,7 @@ export default function ReallocateBed({
       {/* Header */}
       <div className="flex items-center gap-3">
         <Link
-          href={`/admin/allocations/${allocationId}`}
+          href={`${basePath}/${allocationId}`}
           className="flex h-9 w-9 items-center justify-center rounded-lg border border-gray-200 text-gray-500 hover:bg-gray-50"
         >
           <FaArrowLeft size={14} />
@@ -165,7 +167,7 @@ export default function ReallocateBed({
             {/* Actions */}
             <div className="flex justify-end gap-3">
               <Link
-                href={`/admin/allocations/${allocationId}`}
+                href={`${basePath}/${allocationId}`}
                 className="rounded-lg border border-gray-200 px-5 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50"
               >
                 Cancel
