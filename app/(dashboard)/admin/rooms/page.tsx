@@ -1,13 +1,16 @@
 import RoomStats from "../../../components/dashboard/admin/rooms/RoomStats";
 import RoomFilters from "../../../components/dashboard/admin/rooms/RoomFilters";
 import RoomsTable from "../../../components/dashboard/admin/rooms/RoomsTable";
-
-export default function RoomsPage() {
+type RoomsPageProps = {
+  basePath?: string;
+};
+export default function RoomsPage({
+  basePath = "/admin/rooms",
+}: RoomsPageProps) {
   return (
     <main className="min-h-screen bg-surface p-4 md:p-8">
       <div className="mx-auto max-w-7xl space-y-8">
 
-        {/* Header */}
         <div>
           <h1 className="text-2xl font-bold text-on-surface md:text-3xl">
             Rooms & Beds
@@ -18,10 +21,8 @@ export default function RoomsPage() {
           </p>
         </div>
 
-        {/* Statistics */}
         <RoomStats />
 
-        {/* Rooms */}
         <section className="rounded-2xl border border-gray-200 bg-surface-container-lowest shadow-sm">
 
           <div className="border-b border-outline-variant p-5">
@@ -36,11 +37,9 @@ export default function RoomsPage() {
             </div>
           </div>
 
-          {/* Filters */}
           <RoomFilters />
 
-          {/* Table */}
-          <RoomsTable />
+          <RoomsTable basePath={basePath} />
 
         </section>
 

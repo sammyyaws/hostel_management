@@ -71,8 +71,13 @@ const rooms: Room[] = [
     status: "Maintenance",
   },
 ];
+type RoomsTableProps = {
+  basePath?: string;
+};
 
-export default function RoomsTable() {
+export default function RoomsTable({
+  basePath="/admin/rooms",
+}: RoomsTableProps) {
   return (
     <div className="overflow-x-auto">
 
@@ -201,7 +206,7 @@ export default function RoomsTable() {
                 <div className="flex items-center justify-end gap-1">
 
                  <Link
-  href={`/admin/rooms/${room.room}`}
+  href={`${basePath}/${room.room}`}
   className="rounded-lg p-2 text-on-surface-variant transition hover:bg-surface-container hover:text-primary"
   title="View room"
 >
