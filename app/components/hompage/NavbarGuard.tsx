@@ -9,7 +9,7 @@ export default function NavbarGuard() {
 
   // Hide navbar for auth routes
   if (pathname.startsWith("/login") || pathname.startsWith("/signup") ||
-   pathname.startsWith("/auth") || pathname.startsWith("/admin")  || pathname.startsWith("/students_portal") || pathname.startsWith("/porter")) {
+   pathname.startsWith("/auth") || pathname.startsWith("/admin")  || pathname.startsWith("/students") || pathname.startsWith("/porter")) {
     return null;
   }
 
