@@ -46,8 +46,13 @@ const announcements = [
     status: "Draft",
   },
 ];
+type AnnouncementTableProps = {
+  basePath?: string;
+};
 
-export default function AnnouncementTable() {
+export default function AnnouncementTable({
+  basePath = "/admin/announcements",
+}: AnnouncementTableProps) {
   return (
     <div className="overflow-x-auto rounded-xl border border-gray-200 bg-white">
       <table className="w-full min-w-[850px] text-left">
@@ -113,7 +118,7 @@ export default function AnnouncementTable() {
 
               <td className="px-5 py-4">
                 <Link
-                  href={`/admin/announcements/${announcement.id}`}
+                  href={`${basePath}/${announcement.id}`}
                   className="inline-flex h-9 w-9 items-center justify-center rounded-lg text-gray-500 transition hover:bg-teal-50 hover:text-teal-600"
                   title="View announcement"
                 >

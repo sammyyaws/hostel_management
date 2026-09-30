@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 import {
   FaArrowLeft,
@@ -12,11 +13,19 @@ import {
 
 type AnnouncementDetailsProps = {
   announcementId: string;
+    basePath?: string;
 };
 
 export default function AnnouncementDetails({
   announcementId,
+  basePath,
 }: AnnouncementDetailsProps) {
+  const pathname = usePathname();
+  const resolvedBasePath =
+    basePath ??
+    (pathname.startsWith("/porter/")
+      ? "/porter/announcements"
+      : "/admin/announcements");
   const [status, setStatus] = useState("Published");
 
   return (
@@ -24,7 +33,7 @@ export default function AnnouncementDetails({
       {/* Header */}
       <div>
         <Link
-          href="/admin/announcements"
+          href={resolvedBasePath}
           className="mb-4 inline-flex items-center gap-2 text-sm text-gray-500 hover:text-teal-600"
         >
           <FaArrowLeft />

@@ -14,10 +14,12 @@ import {
 
 type ComplaintDetailsProps = {
   complaintId: string;
+    basePath?: string;
 };
 
 export default function ComplaintDetails({
   complaintId,
+    basePath = "/admin/complaints",
 }: ComplaintDetailsProps) {
   const [status, setStatus] = useState("Pending");
 
@@ -26,7 +28,7 @@ export default function ComplaintDetails({
       {/* Header */}
       <div>
         <Link
-          href="/admin/complaints"
+          href={basePath}
           className="mb-4 inline-flex items-center gap-2 text-sm text-gray-500 hover:text-teal-600"
         >
           <FaArrowLeft />

@@ -1,9 +1,18 @@
 import ComplaintStats from "./ComplaintStats";
 import ComplaintFilters from "./ComplaintFilters";
 import ComplaintTable from "./ComplaintTable";
-export default function ComplaintsPage() {
+
+type ComplaintsPageProps = {
+  basePath?: string;
+  showStats?: boolean;
+};
+
+export default function ComplaintsPage({
+  basePath = "/admin/complaints",
+  showStats = true,
+}: ComplaintsPageProps) {
   return (
-    <div className="space-y-6  mx-auto max-w-07xl px-4 py-6 sm:px-6 lg:px-8">
+    <div className="mx-auto max-w-7xl space-y-6 px-4 py-6 sm:px-6 lg:px-8">
       <div>
         <h1 className="text-2xl font-bold text-gray-900">
           Complaints
@@ -14,11 +23,11 @@ export default function ComplaintsPage() {
         </p>
       </div>
 
-      <ComplaintStats />
+      {showStats && <ComplaintStats />}
 
       <ComplaintFilters />
 
-      <ComplaintTable />
+      <ComplaintTable basePath={basePath} />
     </div>
   );
 }

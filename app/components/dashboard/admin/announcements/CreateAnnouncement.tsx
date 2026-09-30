@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import {
@@ -33,14 +34,26 @@ const initialValues = {
   publishDate: "",
   content: "",
 };
+type CreateAnnouncementProps = {
+  basePath?: string;
+};
 
-export default function CreateAnnouncement() {
+export default function CreateAnnouncement({
+  basePath,
+}: CreateAnnouncementProps) {
+  const pathname = usePathname();
+  const resolvedBasePath =
+    basePath ??
+    (pathname.startsWith("/porter/")
+      ? "/porter/announcements"
+      : "/admin/announcements");
+
   return (
     <div className="space-y-6 mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
       {/* Header */}
       <div>
         <Link
-          href="/admin/announcements"
+          href={resolvedBasePath}
           className="mb-4 inline-flex items-center gap-2 text-sm text-gray-500 hover:text-teal-600"
         >
           <FaArrowLeft />

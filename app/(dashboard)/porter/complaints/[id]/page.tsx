@@ -7,5 +7,10 @@ type PageProps = {
 export default async function Page({ params }: PageProps) {
   const { id } = await params;
 
-  return <ComplaintDetails complaintId={id} />;
+  return (
+    <ComplaintDetails
+      complaintId={id}
+      basePath="/porter/complaints"
+    />
+  );
 }

@@ -50,8 +50,13 @@ const complaints = [
     status: "Pending",
   },
 ];
+type ComplaintTableProps = {
+  basePath?: string;
+};
 
-export default function ComplaintTable() {
+export default function ComplaintTable({
+  basePath = "/admin/complaints",
+}: ComplaintTableProps) {
   return (
     <div className="overflow-x-auto rounded-xl border border-gray-200 bg-white">
       <table className="w-full min-w-[900px] text-left">
@@ -125,8 +130,8 @@ export default function ComplaintTable() {
 
               <td className="px-5 py-4">
                 <Link
-                  href={`/admin/complaints/${complaint.id}`}
-                  className="inline-flex h-9 w-9 items-center justify-center rounded-lg text-gray-500 transition hover:bg-teal-50 hover:text-teal-600"
+            href={`${basePath}/${complaint.id}`}            
+        className="inline-flex h-9 w-9 items-center justify-center rounded-lg text-gray-500 transition hover:bg-teal-50 hover:text-teal-600"
                   title="View complaint"
                 >
                   <FaEye />
