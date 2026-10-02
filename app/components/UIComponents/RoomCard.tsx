@@ -11,6 +11,7 @@ interface RoomCardProps {
   badge?: string;
   badgeVariant?: "info" | "success" | "warning" | "danger";
   children?: ReactNode;
+  onBook?: () => void;
 }
 
 export default function RoomCard({
@@ -23,6 +24,7 @@ export default function RoomCard({
   badge,
   badgeVariant = "info",
   children,
+  onBook,
 }: RoomCardProps) {
   const badgeClasses: Record<string, string> = {
     info: "bg-surface-variant text-on-surface-variant",
@@ -35,7 +37,12 @@ export default function RoomCard({
     <article className="flex h-full flex-col overflow-hidden rounded-xl border border-outline-variant bg-surface-container-lowest shadow-sm transition-shadow duration-300 hover:shadow-md">
       {image && (
         <div className="relative h-48 w-full md:h-56 lg:h-64">
-          <img className="h-full w-full object-cover" src={image} alt={title} />
+          <img
+            className="h-full w-full object-cover"
+            src={image}
+            alt={title}
+          />
+
           {badge && (
             <div
               className={`absolute right-4 top-4 rounded-full px-3 py-1 text-[10px] font-bold uppercase shadow-sm ${badgeClasses[badgeVariant]}`}
@@ -48,18 +55,23 @@ export default function RoomCard({
 
       <div className="flex flex-1 flex-col p-6">
         <div className="mb-2 flex items-start justify-between gap-4">
-          <h3 className="text-xl font-semibold text-on-surface">{title}</h3>
+          <h3 className="text-xl font-semibold text-on-surface">
+            {title}
+          </h3>
         </div>
 
         {description && (
-          <p className="mb-5 text-sm leading-6 text-on-surface-variant">{description}</p>
+          <p className="mb-5 text-sm leading-6 text-on-surface-variant">
+            {description}
+          </p>
         )}
 
         {price && (
           <div className="mb-4 font-body-md text-body-md font-semibold text-primary">
             {price}
+
             {period && (
-              <span className="ml-1 font-body-sm text-body-sm text-on-surface-variant font-normal">
+              <span className="ml-1 font-body-sm text-body-sm font-normal text-on-surface-variant">
                 {period}
               </span>
             )}
@@ -86,7 +98,12 @@ export default function RoomCard({
               <button className="w-full rounded-lg border border-outline bg-transparent px-4 py-2 text-sm font-medium text-on-surface transition-colors hover:bg-surface-container sm:flex-1">
                 View Details
               </button>
-              <button className="hidden rounded bg-primary px-5 py-2 text-sm font-semibold text-on-primary transition-colors hover:bg-primary-container md:block">
+
+              <button
+                type="button"
+                onClick={onBook}
+                className="hidden rounded bg-primary px-5 py-2 text-sm font-semibold text-on-primary transition-colors hover:bg-primary-container md:block"
+              >
                 Book Now
               </button>
             </>
