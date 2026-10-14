@@ -1,4 +1,4 @@
-import PaymentsPage from "@/components/dashboard/admin/payments/PaymentsPage";
+import PaymentsPage from "@/app/components/dashboard/admin/payments/PaymentsPage";
 
 export default function Page() {
   return <PaymentsPage showStats={false} />;

@@ -3,11 +3,11 @@
 import React, { useState } from "react";
 import { FaUserGraduate } from "react-icons/fa";
 
-import DashboardSidebar from "@/components/dashboard/admin/DashboardSidebar";
-import DashboardMobileHeader from "@/components/dashboard/admin/DashboardMobileHeader";
-import DashboardMobileMenu from "@/components/dashboard/admin/DashboardMobileMenu";
+import DashboardSidebar from "@/app/components/dashboard/admin/DashboardSidebar";
+import DashboardMobileHeader from "@/app/components/dashboard/admin/DashboardMobileHeader";
+import DashboardMobileMenu from "@/app/components/dashboard/admin/DashboardMobileMenu";
 
-import { studentNavigation } from "@/components/dashboard/navigation/studentNavigation";
+import { studentNavigation } from "@/app/components/dashboard/navigation/studentNavigation";
 
 export default function StudentLayout({
   children,

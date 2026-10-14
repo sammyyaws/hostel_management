@@ -1,4 +1,4 @@
-import StaffDetails from "@/components/dashboard/admin/settings/StaffDetails";
+import StaffDetails from "@/app/components/dashboard/admin/settings/StaffDetails";
 
 type PageProps = {
   params: Promise<{ id: string }>;

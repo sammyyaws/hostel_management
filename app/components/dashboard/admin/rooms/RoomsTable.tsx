@@ -1,5 +1,10 @@
 "use client";
+import  type {Room} from "@/features/rooms/roomsSlice";
+import { useAppSelector } from "@/lib/hooks";
 
+interface RoomsTableProps {
+  basePath?: string;
+}
 import {
   FaEllipsisV,
   FaBed,
@@ -8,76 +13,11 @@ import {
 
 
 import Link from "next/link";
-type Room = {
-  id: number;
-  room: string;
-  block: string;
-  floor: string;
-  capacity: number;
-  occupied: number;
-  available: number;
-  status: "Available" | "Full" | "Maintenance";
-};
-
-const rooms: Room[] = [
-  {
-    id: 1,
-    room: "A102",
-    block: "Block A",
-    floor: "1st Floor",
-    capacity: 4,
-    occupied: 3,
-    available: 1,
-    status: "Available",
-  },
-  {
-    id: 2,
-    room: "A103",
-    block: "Block A",
-    floor: "1st Floor",
-    capacity: 4,
-    occupied: 4,
-    available: 0,
-    status: "Full",
-  },
-  {
-    id: 3,
-    room: "B204",
-    block: "Block B",
-    floor: "2nd Floor",
-    capacity: 4,
-    occupied: 2,
-    available: 2,
-    status: "Available",
-  },
-  {
-    id: 4,
-    room: "B205",
-    block: "Block B",
-    floor: "2nd Floor",
-    capacity: 4,
-    occupied: 4,
-    available: 0,
-    status: "Full",
-  },
-  {
-    id: 5,
-    room: "C105",
-    block: "Block C",
-    floor: "1st Floor",
-    capacity: 2,
-    occupied: 0,
-    available: 2,
-    status: "Maintenance",
-  },
-];
-type RoomsTableProps = {
-  basePath?: string;
-};
-
 export default function RoomsTable({
-  basePath="/admin/rooms",
+  basePath = "/admin/rooms",
 }: RoomsTableProps) {
+  const rooms = useAppSelector((state) => state.rooms.rooms);
+
   return (
     <div className="overflow-x-auto">
 

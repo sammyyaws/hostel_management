@@ -1,4 +1,4 @@
-import PaymentDetails from "@/components/dashboard/admin/payments/PaymentDetails";
+import PaymentDetails from "@/app/components/dashboard/admin/payments/PaymentDetails";
 
 type PageProps = {
   params: Promise<{

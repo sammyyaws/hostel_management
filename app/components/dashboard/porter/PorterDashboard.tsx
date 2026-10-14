@@ -1,8 +1,8 @@
 "use client";
 
-import OccupancyMetrics from "@/components/dashboard/admin/OccupancyMetrics";
-import RecentActivity from "@/components/dashboard/admin/RecentActivity";
-import QuickActions from "@/components/dashboard/admin/QuickActions";
+import OccupancyMetrics from "@/app/components/dashboard/admin/OccupancyMetrics";
+import RecentActivity from "@/app/components/dashboard/admin/RecentActivity";
+import QuickActions from "@/app/components/dashboard/admin/QuickActions";
 import {
   FaUsers,
   FaBed,

@@ -1,34 +1,65 @@
+'use client'
+
 import {
   FaBed,
   FaDoorOpen,
   FaUsers,
   FaCheckCircle,
 } from "react-icons/fa";
+import {useAppSelector} from   "@/lib/hooks";
+
+
+export default function RoomStats() {
+
+
+const rooms = useAppSelector((state) => state.rooms.rooms);
+
+const totalRooms = rooms.length;
+
+const totalBeds = rooms.reduce(
+  (total, room) => total + room.capacity,
+  0
+);
+
+const occupiedBeds = rooms.reduce(
+  (total, room) => total + room.occupied,
+  0
+);
+
+const availableBeds = rooms.reduce(
+  (total, room) => total + room.available,
+  0
+);
+
 
 const stats = [
   {
     label: "Total Rooms",
-    value: "125",
+    value: totalRooms,
     icon: FaDoorOpen,
   },
   {
     label: "Total Beds",
-    value: "500",
+    value: totalBeds,
     icon: FaBed,
   },
   {
     label: "Occupied Beds",
-    value: "463",
+    value: occupiedBeds,
     icon: FaUsers,
   },
   {
     label: "Available Beds",
-    value: "37",
+    value: availableBeds,
     icon: FaCheckCircle,
   },
 ];
 
-export default function RoomStats() {
+
+
+
+
+
   return (
     <section className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
       {stats.map((stat) => {

@@ -1,4 +1,4 @@
-import ReportDetails from "@/components/dashboard/admin/reports/ReportDetails";
+import ReportDetails from "@/app/components/dashboard/admin/reports/ReportDetails";
 
 type PageProps = {
   params: Promise<{ id: string }>;

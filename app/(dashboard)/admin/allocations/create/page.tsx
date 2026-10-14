@@ -1,4 +1,4 @@
-import AllocateBed from "@/components/dashboard/admin/allocations/AllocateBed";
+import AllocateBed from "@/app/components/dashboard/admin/allocations/AllocateBed";
 
 export default function Page() {
   return <AllocateBed />;

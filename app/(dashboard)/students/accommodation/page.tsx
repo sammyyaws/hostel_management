@@ -1,6 +1,6 @@
 import AccommodationOverview, {
   AccommodationData,
-} from "@/components/dashboard/student/accommodation/AccommodationOverview";
+} from "@/app/components/dashboard/student/accommodation/AccommodationOverview";
 
 export default function StudentAccommodationPage() {
   // Temporary mock data.

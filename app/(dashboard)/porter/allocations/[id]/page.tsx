@@ -1,4 +1,4 @@
-import AllocationDetails from "@/components/dashboard/admin/allocations/AllocationDetails";
+import AllocationDetails from "@/app/components/dashboard/admin/allocations/AllocationDetails";
 
 type PageProps = {
   params: Promise<{ id: string }>;

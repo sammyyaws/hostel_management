@@ -1,4 +1,4 @@
-import ReallocateBed from "@/components/dashboard/admin/allocations/ReallocateBed";
+import ReallocateBed from "@/app/components/dashboard/admin/allocations/ReallocateBed";
 
 type PageProps = {
   params: Promise<{ id: string }>;

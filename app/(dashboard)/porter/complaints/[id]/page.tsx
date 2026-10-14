@@ -1,4 +1,4 @@
-import ComplaintDetails from "@/components/dashboard/admin/complaints/ComplaintDetails";
+import ComplaintDetails from "@/app/components/dashboard/admin/complaints/ComplaintDetails";
 
 type PageProps = {
   params: Promise<{ id: string }>;

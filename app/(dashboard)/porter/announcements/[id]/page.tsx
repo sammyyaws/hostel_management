@@ -1,4 +1,4 @@
-import AnnouncementDetails from "@/components/dashboard/admin/announcements/AnnouncementDetails";
+import AnnouncementDetails from "@/app/components/dashboard/admin/announcements/AnnouncementDetails";
 
 type PageProps = {
   params: Promise<{ id: string }>;

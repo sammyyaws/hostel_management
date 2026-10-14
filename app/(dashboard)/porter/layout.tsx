@@ -3,11 +3,11 @@
 import React, { useState } from "react";
 import { FaUserTie } from "react-icons/fa";
 
-import DashboardSidebar from "@/components/dashboard/admin/DashboardSidebar";
-import DashboardMobileHeader from "@/components/dashboard/admin/DashboardMobileHeader";
-import DashboardMobileMenu from "@/components/dashboard/admin/DashboardMobileMenu";
+import DashboardSidebar from "@/app/components/dashboard/admin/DashboardSidebar";
+import DashboardMobileHeader from "@/app/components/dashboard/admin/DashboardMobileHeader";
+import DashboardMobileMenu from "@/app/components/dashboard/admin/DashboardMobileMenu";
 
-import { porterNavigation } from "@/components/dashboard/navigation/porterNavigation";
+import { porterNavigation } from "@/app/components/dashboard/navigation/porterNavigation";
 
 export default function PorterLayout({
   children,
