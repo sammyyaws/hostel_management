@@ -16,24 +16,25 @@ export default function AdminAddRoomPage() {
   const handleAddRoom = async (values: AddRoomFormValues) => {
     const capacity = Number(values.capacity);
 
-    dispatch(
-      addRoom({
-        id: Date.now(),
-        room: values.roomName.trim(),
-        block: values.block.trim(),
-        floor: values.floor.trim(),
-        roomType: values.roomType.trim(),
-        price: Number(values.price),
-        capacity,
-        occupied: 0,
-        available: capacity,
-        status: "Available",
-        bedroomPhotos: values.bedroomPhotos,
-        kitchenPhotos: values.kitchenPhotos,
-        washroomPhotos: values.washroomPhotos,
-        published: values.published,
-      })
-    );
+   dispatch(
+  addRoom({
+    id: Date.now(),
+    room: values.roomName.trim(),
+    block: values.block.trim(),
+    floor: values.floor.trim(),
+    roomType: values.roomType.trim(),
+    price: Number(values.price),
+    capacity,
+    occupied: 0,
+    available: capacity,
+    status: "Available",
+    bedroomPhotos: values.bedroomPhotos,
+    kitchenPhotos: values.kitchenPhotos,
+    washroomPhotos: values.washroomPhotos,
+    roomVideo: values.roomVideo, // Added
+    published: values.published,
+  })
+);
 
     router.push("/admin/rooms");
   };

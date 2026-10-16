@@ -1,22 +1,34 @@
 
 "use client";
 
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+
 import RoomCard from "../components/UIComponents/RoomCard";
+import RoomDetailsModal from "@/app/components/rooms/gallery/RoomDetailsModal";
+import { buildRoomGallery } from "@/app/components/rooms/gallery/roomGallery.utils";
 import { useAppSelector } from "@/lib/hooks";
+import type { Room } from "@/features/rooms/roomsSlice";
 
 const fallbackImage =
   "https://lh3.googleusercontent.com/aida-public/AB6AXuDOL6BALdS3uaSUABqbVASqyyOQ-sf0T5-F_t0ZpbaK6BnPAbiiloEONXzF_dA_4ZF3WjFBmud8P_puBygQOZEvuzd0TShk8drFTbM_8PzJfq1WEyarIzCaCeOhTCC7kxjWO6lYEs8lSDQMQHZB-TLcSqvAR69E6t-bkJbQh-4";
 
 export default function RoomsPage() {
+  const router = useRouter();
   const rooms = useAppSelector((state) => state.rooms.rooms);
 
-  // Only display rooms students can currently book.
+  const [selectedRoom, setSelectedRoom] = useState<Room | null>(null);
+
   const availableRooms = rooms.filter(
     (room) =>
       room.published &&
       room.status === "Available" &&
       room.available > 0
   );
+
+  const handleBook = (room: Room) => {
+    router.push(`/rooms/${room.id}/book`);
+  };
 
   return (
     <main className="mx-auto w-full max-w-7xl flex-grow px-4 pb-12 pt-24 sm:px-6 lg:px-container-padding">
@@ -34,7 +46,10 @@ export default function RoomsPage() {
       {availableRooms.length > 0 ? (
         <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
           {availableRooms.map((room) => (
-            <div key={room.id} className="mb-6 px-2 md:mb-0 md:px-0">
+            <div
+              key={room.id}
+              className="mb-6 px-2 md:mb-0 md:px-0"
+            >
               <RoomCard
                 title={room.room}
                 price={`GH₵ ${room.price.toLocaleString()}`}
@@ -47,6 +62,8 @@ export default function RoomsPage() {
                 image={room.bedroomPhotos[0] || fallbackImage}
                 badge="Available"
                 badgeVariant="success"
+                onViewDetails={() => setSelectedRoom(room)}
+                onBook={() => handleBook(room)}
               />
             </div>
           ))}
@@ -83,6 +100,17 @@ export default function RoomsPage() {
           Contact Advisor
         </button>
       </div>
+
+      {selectedRoom && (
+        <RoomDetailsModal
+          open={true}
+          roomName={selectedRoom.room}
+          price={selectedRoom.price}
+          slides={buildRoomGallery(selectedRoom)}
+          onClose={() => setSelectedRoom(null)}
+          onBook={() => handleBook(selectedRoom)}
+        />
+      )}
     </main>
   );
 }

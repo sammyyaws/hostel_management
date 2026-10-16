@@ -46,3 +46,30 @@ body {
 .bg-neutral { background-color: var(--color-neutral); }
 .text-neutral { color: var(--color-neutral); }
 .border-neutral { border-color: var(--color-neutral); }
+
+.room-coverflow-container {
+  width: 100%;
+  overflow: hidden;
+}
+
+.room-coverflow {
+  width: 100%;
+  padding: 35px 0;
+  overflow: visible;
+}
+
+.room-coverflow .room-coverflow-slide {
+  width: min(380px, 68vw);
+  height: 250px;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.room-coverflow .room-coverflow-slide img,
+.room-coverflow .room-coverflow-slide video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: inherit;
+}

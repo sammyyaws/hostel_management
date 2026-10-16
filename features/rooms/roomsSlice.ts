@@ -16,6 +16,7 @@ export type Room = {
   status: RoomStatus;
   bedroomPhotos: string[];
   kitchenPhotos: string[];
+    roomVideo?: string | null; // Added
   washroomPhotos: string[];
   published: boolean;
 };
@@ -40,6 +41,7 @@ const initialState: RoomsState = {
       bedroomPhotos: [],
       kitchenPhotos: [],
       washroomPhotos: [],
+      roomVideo: null,
       published: true,
     },
     {
@@ -56,6 +58,7 @@ const initialState: RoomsState = {
       bedroomPhotos: [],
       kitchenPhotos: [],
       washroomPhotos: [],
+      roomVideo: null,
       published: true,
     },
     {
@@ -72,6 +75,7 @@ const initialState: RoomsState = {
       bedroomPhotos: [],
       kitchenPhotos: [],
       washroomPhotos: [],
+      roomVideo: null,
       published: true,
     },
     {
@@ -88,6 +92,7 @@ const initialState: RoomsState = {
       bedroomPhotos: [],
       kitchenPhotos: [],
       washroomPhotos: [],
+      roomVideo: null,
       published: true,
     },
     {
@@ -104,6 +109,7 @@ const initialState: RoomsState = {
       bedroomPhotos: [],
       kitchenPhotos: [],
       washroomPhotos: [],
+      roomVideo: null,
       published: true,
     },
   ],
