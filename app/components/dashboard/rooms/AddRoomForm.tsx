@@ -2,8 +2,8 @@
 "use client";
 
 import * as Yup from "yup";
-import { useFormikContext, getIn } from "formik";
 import PhotoUploadField from "@/app/components/form/PhotoUploadField";
+import VideoUploadField from "@/app/components/form/VideoUploadField";
 import FormikForm from "@/app/components/form/FormikForm";
 import FormInput from "@/app/components/form/FormInput";
 import FormCheckbox from "@/app/components/form/FormCheckbox";
@@ -18,6 +18,7 @@ export type AddRoomFormValues = {
   bedroomPhotos: string[];
   kitchenPhotos: string[];
   washroomPhotos: string[];
+  roomVideo: string | null;
   published: boolean;
 };
 
@@ -35,32 +36,51 @@ const initialValues: AddRoomFormValues = {
   bedroomPhotos: [],
   kitchenPhotos: [],
   washroomPhotos: [],
+  roomVideo: null,
   published: true,
 };
 
 const validationSchema = Yup.object({
-  roomName: Yup.string().trim().required("Room name is required"),
-  block: Yup.string().trim().required("Block is required"),
-  floor: Yup.string().trim().required("Floor is required"),
-  roomType: Yup.string().trim().required("Room type is required"),
+  roomName: Yup.string()
+    .trim()
+    .required("Room name is required"),
+
+  block: Yup.string()
+    .trim()
+    .required("Block is required"),
+
+  floor: Yup.string()
+    .trim()
+    .required("Floor is required"),
+
+  roomType: Yup.string()
+    .trim()
+    .required("Room type is required"),
+
   price: Yup.number()
     .typeError("Enter a valid price")
     .min(0, "Price cannot be negative")
     .required("Price is required"),
+
   capacity: Yup.number()
     .typeError("Enter the number of beds")
     .integer("Capacity must be a whole number")
     .min(1, "A room must have at least one bed")
     .required("Bed capacity is required"),
+
   bedroomPhotos: Yup.array()
     .of(Yup.string().required())
     .min(1, "Upload at least one bedroom photo"),
+
   kitchenPhotos: Yup.array().of(Yup.string().required()),
+
   washroomPhotos: Yup.array().of(Yup.string().required()),
+
+  // Optional: a room can be saved without a video.
+  roomVideo: Yup.string().nullable().notRequired(),
+
   published: Yup.boolean().required(),
 });
-
-
 
 export default function AddRoomForm({ onSubmit }: AddRoomFormProps) {
   return (
@@ -69,7 +89,6 @@ export default function AddRoomForm({ onSubmit }: AddRoomFormProps) {
       validationSchema={validationSchema}
       onSubmit={async (values) => {
         await onSubmit(values);
-        console.log(values);
       }}
     >
       <div className="space-y-8">
@@ -79,21 +98,43 @@ export default function AddRoomForm({ onSubmit }: AddRoomFormProps) {
             <h2 className="text-lg font-semibold text-on-surface">
               Room Details
             </h2>
+
             <p className="text-sm text-on-surface-variant">
               Enter the actual room information.
             </p>
           </div>
 
           <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
-            <FormInput placeholder="eg. A1  " name="roomName" label="Room Name / Number" />
-            <FormInput placeholder="eg. Anex or Enter 1 if there are no seperate blocks"name="block" label="Block" />
-            <FormInput placeholder="eg. first/second/third"  name="floor" label="Floor" />
-            <FormInput placeholder="eg. 1 or 2 in 1  " name="roomType" label="Room Type" />
+            <FormInput
+              placeholder="e.g. A1"
+              name="roomName"
+              label="Room Name / Number"
+            />
+
+            <FormInput
+              placeholder="e.g. Annex or 1 if there are no separate blocks"
+              name="block"
+              label="Block"
+            />
+
+            <FormInput
+              placeholder="e.g. First, Second, Third"
+              name="floor"
+              label="Floor"
+            />
+
+            <FormInput
+              placeholder="e.g. 1 in 1, 2 in 1"
+              name="roomType"
+              label="Room Type"
+            />
+
             <FormInput
               name="price"
               label="Price per bed (GH₵)"
               type="number"
             />
+
             <FormInput
               name="capacity"
               label="Number of Beds"
@@ -102,14 +143,16 @@ export default function AddRoomForm({ onSubmit }: AddRoomFormProps) {
           </div>
         </section>
 
-        {/* Room photos */}
+        {/* Room photos and optional video */}
         <section className="space-y-5">
           <div>
             <h2 className="text-lg font-semibold text-on-surface">
-              Room Photos
+              Room Photos and Video
             </h2>
+
             <p className="text-sm text-on-surface-variant">
-              Add photos that students can view before booking.
+              Add photos and an optional video that students can view
+              before booking.
             </p>
           </div>
 
@@ -117,6 +160,7 @@ export default function AddRoomForm({ onSubmit }: AddRoomFormProps) {
             name="bedroomPhotos"
             label="Bedroom Photos"
             description="At least one photo is required."
+            required
           />
 
           <PhotoUploadField
@@ -130,6 +174,12 @@ export default function AddRoomForm({ onSubmit }: AddRoomFormProps) {
             label="Washroom Photos"
             description="Upload photos of the washroom facilities."
           />
+
+          <VideoUploadField
+            name="roomVideo"
+            label="Room Tour Video"
+            description="Optional. Upload a short video to give prospective residents a better view of the room."
+          />
         </section>
 
         {/* Visibility */}
@@ -138,11 +188,13 @@ export default function AddRoomForm({ onSubmit }: AddRoomFormProps) {
             name="published"
             label="Publish this room on the student portal"
           />
+
           <p className="mt-1 text-sm text-on-surface-variant">
             Unpublished rooms should remain hidden from students.
           </p>
         </section>
 
+        {/* Form actions */}
         <div className="flex flex-col-reverse gap-3 border-t border-outline-variant pt-5 sm:flex-row sm:justify-end">
           <button
             type="reset"
