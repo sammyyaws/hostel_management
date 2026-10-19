@@ -3,7 +3,6 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-
 import RoomCard from "../components/UIComponents/RoomCard";
 import RoomDetailsModal from "@/app/components/rooms/gallery/RoomDetailsModal";
 import { buildRoomGallery } from "@/app/components/rooms/gallery/roomGallery.utils";
@@ -18,7 +17,6 @@ export default function RoomsPage() {
   const rooms = useAppSelector((state) => state.rooms.rooms);
 
   const [selectedRoom, setSelectedRoom] = useState<Room | null>(null);
-
   const availableRooms = rooms.filter(
     (room) =>
       room.published &&

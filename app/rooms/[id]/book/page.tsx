@@ -3,15 +3,14 @@
 
 import { useMemo, useState } from "react";
 import { useParams } from "next/navigation";
-import { useAppDispatch, useAppSelector } from "@/lib/hooks";
-import { createBooking } from "@/features/bookings/bookingsSlice";
+import { useAppSelector } from "@/lib/hooks";
 
+import BookingEmailModal from "@/app/components/rooms/bookings/BookingEmailModal";
 import BookingRoomDetails from "@/app/components/rooms/bookings/BookingRoomDetails";
 import BedSelector, {
   type BookingBed,
 } from "@/app/components/rooms/bookings/BedSelector";
 import BookingSummary from "@/app/components/rooms/bookings/BookingSummary";
-import BookingConfirmation from "@/app/components/rooms/bookings/BookingConfirmation";
 
 const activeStatuses = [
   "Pending Payment",
@@ -23,7 +22,7 @@ export default function RoomBookingPage() {
   const params = useParams<{ id: string }>();
   const roomId = Number(params.id);
 
-  const dispatch = useAppDispatch();
+  const [isEmailModalOpen, setIsEmailModalOpen] = useState(false);
 
   const room = useAppSelector((state) =>
     state.rooms.rooms.find((item) => item.id === roomId)
@@ -32,9 +31,6 @@ export default function RoomBookingPage() {
   const bookings = useAppSelector((state) => state.bookings.bookings);
 
   const [selectedBed, setSelectedBed] = useState<string | null>(null);
-  const [createdBookingId, setCreatedBookingId] = useState<string | null>(
-    null
-  );
 
   const beds = useMemo<BookingBed[]>(() => {
     if (!room) return [];
@@ -75,7 +71,7 @@ export default function RoomBookingPage() {
 
   if (!room) {
     return (
-      <main className="mx-auto  max-w-3xl p-6">
+      <main className="mx-auto max-w-3xl p-6">
         <h1 className="text-2xl font-bold">Room not found</h1>
         <p className="mt-2 text-gray-500">
           This room may have been removed or the link may be incorrect.
@@ -84,49 +80,14 @@ export default function RoomBookingPage() {
     );
   }
 
-  const selectedBooking = bookings.find(
-    (booking) => booking.id === createdBookingId
-  );
-
-  if (selectedBooking) {
-    return <BookingConfirmation booking={selectedBooking} />;
-  }
-
-  function handleBookingRequest() {
-    if (!room || !selectedBed) return;
-
-    const bed = beds.find((item) => item.id === selectedBed);
-
-    if (!bed || bed.status !== "Available") return;
-
-    const bookingId = `TYB-${Date.now()}`;
-
-    dispatch(
-      createBooking({
-        id: bookingId,
-        roomId: room.id,
-        roomName: room.room,
-        bedId: bed.id,
-        bedLabel: bed.label,
-        price: room.price,
-        status: "Pending Payment",
-        paymentProof: null,
-        createdAt: new Date().toISOString(),
-      })
-    );
-
-    setCreatedBookingId(bookingId);
-    setSelectedBed(null);
-  }
-
   return (
-    <main className="mx-auto my-12  max-w-5xl space-y-6 p-4 sm:p-6">
+    <main className="mx-auto my-12 max-w-5xl space-y-6 p-4 sm:p-6">
       <header>
         <p className="text-sm font-medium text-teal-600">
           TYB Student Portal
         </p>
 
-        <h1 className="mt-1 text-3xl  font-bold text-gray-900">
+        <h1 className="mt-1 text-3xl font-bold text-gray-900">
           Book {room.room}
         </h1>
 
@@ -152,9 +113,23 @@ export default function RoomBookingPage() {
           selectedBedLabel={
             beds.find((bed) => bed.id === selectedBed)?.label ?? null
           }
-          onSubmit={handleBookingRequest}
+          onSubmit={() => {
+            const bed = beds.find((item) => item.id === selectedBed);
+
+            if (!bed || bed.status !== "Available") return;
+
+            setIsEmailModalOpen(true);
+          }}
         />
       </section>
+
+      <BookingEmailModal
+        isOpen={isEmailModalOpen}
+        onClose={() => setIsEmailModalOpen(false)}
+        roomId={room.id}
+        bedId={selectedBed ?? ""}
+      />
     </main>
   );
 }
+

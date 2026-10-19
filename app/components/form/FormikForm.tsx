@@ -17,6 +17,7 @@ interface FormikFormProps<T extends FormikValues> {
     helpers: FormikHelpers<T>
   ) => void | Promise<void>;
   children: ReactNode;
+  enableReinitialize?: boolean;
 }
 
 export default function FormikForm<T extends FormikValues>({
@@ -24,12 +25,14 @@ export default function FormikForm<T extends FormikValues>({
   validationSchema,
   onSubmit,
   children,
+  enableReinitialize = false,
 }: FormikFormProps<T>) {
   return (
     <Formik
       initialValues={initialValues}
       validationSchema={validationSchema}
       onSubmit={onSubmit}
+      enableReinitialize={enableReinitialize}
     >
       <Form>{children}</Form>
     </Formik>
