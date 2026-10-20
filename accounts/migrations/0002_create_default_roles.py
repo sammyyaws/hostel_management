@@ -2,36 +2,25 @@ from django.db import migrations
 
 
 def create_default_roles(apps, schema_editor):
-    Role = apps.get_model("accounts", "Role")
+    User = apps.get_model("accounts", "User")
 
     roles = [
-        "Admin",
-        "Manager",
-        "Porter",
-        "Resident",
+        "ADMIN",
+        "PORTER",
+        "STUDENT",
+        "STAFF",
     ]
 
-    for role_name in roles:
-        Role.objects.get_or_create(
-            role_name=role_name
-        )
+    for role in roles:
+        User.objects.filter(role=role).update(role=role)
 
 
 def remove_default_roles(apps, schema_editor):
-    Role = apps.get_model("accounts", "Role")
-
-    Role.objects.filter(
-        role_name__in=[
-            "Admin",
-            "Manager",
-            "Porter",
-            "Resident",
-        ]
-    ).delete()
+    User = apps.get_model("accounts", "User")
+    User.objects.filter(role__in=["ADMIN", "PORTER", "STUDENT", "STAFF"]).update(role="STUDENT")
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("accounts", "0001_initial"),
     ]

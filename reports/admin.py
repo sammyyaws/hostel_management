@@ -1,3 +1,7 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import AuditLog, Report
+
+
+admin.site.register(AuditLog)
+admin.site.register(Report)

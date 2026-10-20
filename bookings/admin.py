@@ -1,3 +1,9 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import Allocation, Booking, BookingStatusHistory, PaymentProof
+
+
+admin.site.register(Booking)
+admin.site.register(PaymentProof)
+admin.site.register(Allocation)
+admin.site.register(BookingStatusHistory)
