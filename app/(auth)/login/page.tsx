@@ -1,6 +1,7 @@
 "use client";
 
-
+import {useState} from "react";
+import {useLoginMutation} from "@/services/authApi";
 import { useRouter } from "next/navigation";
 import * as Yup from "yup";
 import FormikForm from "../../components/form/FormikForm";
@@ -19,13 +20,17 @@ const validationSchema = Yup.object({
 
 export default function LoginPage() {
 	const router = useRouter();
-
+    const [login, { isLoading }] = useLoginMutation();
+	const [apiError, setApiError] = useState<string | null>(null);
 	const handleSubmit = async (values: LoginValues) => {
 		// TODO: replace with real auth call
 		console.log("login submit", values);
 		// redirect or show success
 		// router.push('/');
 	};
+
+
+
 
 	return (
 		<div className="w-full flex flex-col relative overflow-y-auto">

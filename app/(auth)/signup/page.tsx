@@ -1,6 +1,8 @@
 
 "use client";
-
+import { useRouter } from "next/navigation";
+import {useState} from "react";
+import {useRegisterMutation} from "@/services/authApi";
 import React, { Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import * as Yup from "yup";
@@ -23,7 +25,7 @@ function SignupForm() {
     confirmPassword: "",
     terms: false,
   };
-
+/// validation schema
   const validationSchema = Yup.object({
     fullName: Yup.string().required("Full name is required"),
 
@@ -49,21 +51,55 @@ function SignupForm() {
     ),
   });
 
-  const handleSubmit = async (values: SignupValues) => {
-    try {
-      console.log("Signup form submitted", values);
+//api request start
+const [register,{isLoading}] = useRegisterMutation();
+const[apierror,setApiError] = useState<string | null>(null);
+const router = useRouter();
 
-      // TODO:
-      // 1. Send the registration details to the Django API.
-      // 2. Create the student account.
-      // 3. Authenticate the student.
-      // 4. Associate any pending booking with the account.
-      // 5. Redirect the student to the appropriate page.
+ const handleSubmit = async (values: SignupValues) => {
+  setApiError("");
 
-    } catch (error) {
-      console.error("Signup failed:", error);
+  try {
+    await register({
+      full_name: values.fullName,
+      student_id: values.studentId,
+      email: values.email,
+      phone: values.phone,
+      password: values.password,
+    }).unwrap();
+  console.log(values);
+    router.push("/login?registered=true");
+  } catch (error: unknown) {
+    const apiError = error as {
+      data?: Record<string, unknown>;
+      status?: number | string;
+    };
+
+    const data = apiError.data;
+
+    if (data && typeof data === "object") {
+      const messages = Object.entries(data)
+        .map(([field, message]) => {
+          const detail = Array.isArray(message)
+            ? message.join(" ")
+            : typeof message === "string"
+              ? message
+              : "";
+
+          return detail ? `${field}: ${detail}` : "";
+        })
+        .filter(Boolean);
+
+      setApiError(
+        messages.join(" ") || "Registration failed. Please try again."
+      );
+    } else {
+      setApiError(
+        "Could not connect to the server. Check that Django is running."
+      );
     }
-  };
+  }
+};
 
   return (
     <div className="min-h-full flex">

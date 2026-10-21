@@ -1,13 +1,13 @@
 
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
+const API_BASE_URL =process.env.NEXT_PUBLIC_API_URL;
+
 export const baseApi = createApi({
   reducerPath: "api",
 
   baseQuery: fetchBaseQuery({
-    baseUrl:
-      process.env.NEXT_PUBLIC_API_URL ??
-      "http://127.0.0.1:8000/api/",
+    baseUrl: API_BASE_URL,
 
     prepareHeaders: (headers) => {
       headers.set("Accept", "application/json");
