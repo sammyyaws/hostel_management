@@ -15,6 +15,18 @@ class UserStatus(models.TextChoices):
     SUSPENDED = "SUSPENDED", "Suspended"
 
 
+
+
+class StudentGender(models.TextChoices):
+    MALE = "MALE", "Male"
+    FEMALE = "FEMALE", "Female"
+    OTHER = "OTHER", "Other"
+    PREFER_NOT_TO_SAY = "PREFER_NOT_TO_SAY", "Prefer not to say"
+
+
+
+
+
 class UserManager(BaseUserManager):
     use_in_migrations = True
 
@@ -90,7 +102,12 @@ class Student(models.Model):
     full_name = models.CharField(max_length=150)
     student_id = models.CharField(max_length=50, unique=True)
     phone = models.CharField(max_length=30, blank=True, null=True)
-    gender = models.CharField(max_length=20, blank=True, null=True)
+    gender = models.CharField(
+        max_length=20,
+        choices=StudentGender.choices,
+        blank=True,
+        null=True
+    )
     program = models.CharField(max_length=150, blank=True, null=True)
     year_of_study = models.IntegerField(blank=True, null=True)
     emergency_contact = models.CharField(max_length=100, blank=True, null=True)

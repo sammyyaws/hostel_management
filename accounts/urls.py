@@ -5,6 +5,7 @@ from .views import (
     LoginView,
     CurrentUserView,
     RefreshTokenView,
+    StudentProfileView
 )
 
 
@@ -32,4 +33,9 @@ urlpatterns = [
         RefreshTokenView.as_view(),
         name="token-refresh",
     ),
+    path(
+        "student/profile/",
+        StudentProfileView.as_view(),
+        name="student-profile",
+    )
 ]
