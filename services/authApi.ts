@@ -34,6 +34,32 @@ export interface LoginResponse {
   user: AuthUser;
 }
 
+//student profile 
+
+export interface StudentProfile {
+  full_name: string;
+  student_id: string;
+  email: string;
+  phone: string | null;
+  gender: "MALE" | "FEMALE" | "OTHER" | "PREFER_NOT_TO_SAY" | null;
+  program: string | null;
+  year_of_study: number | null;
+  emergency_contact: string | null;
+  is_profile_complete: boolean;
+}
+
+export type UpdateStudentProfileRequest = Partial<
+  Pick<
+    StudentProfile,
+    | "full_name"
+    | "phone"
+    | "gender"
+    | "program"
+    | "year_of_study"
+    | "emergency_contact"
+  >
+>;
+
 export const authApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     register: builder.mutation<RegisterResponse, RegisterRequest>({
@@ -55,6 +81,25 @@ export const authApi = baseApi.injectEndpoints({
     getCurrentUser: builder.query<AuthUser, void>({
       query: () => "auth/me/",
     }),
+  //student update profile
+
+getStudentProfile: builder.query<StudentProfile, void>({
+  query: () => "auth/profile/",
+  providesTags: ["StudentProfile"],
+}),
+
+updateStudentProfile: builder.mutation< StudentProfile,UpdateStudentProfileRequest>({
+  query: (body) => ({
+    url: "auth/profile/",
+    method: "PATCH",
+    body,
+  }),
+  invalidatesTags: ["StudentProfile"],
+}),
+
+
+
+
   }),
 });
 

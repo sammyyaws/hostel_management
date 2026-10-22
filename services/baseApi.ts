@@ -26,6 +26,7 @@ export const baseApi = createApi({
     "Notification",
     "Allocation",
     "Report",
+    "StudentProfile"
   ],
 
   endpoints: () => ({}),
