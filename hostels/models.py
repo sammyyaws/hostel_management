@@ -61,11 +61,20 @@ class RoomType(models.Model):
         return self.name
 
 
+#room gender classification
+class RoomGender(models.TextChoices):
+    MALE = "MALE", "Male"
+    FEMALE = "FEMALE", "Female"
+
 class Room(models.Model):
     hostel = models.ForeignKey(Hostel, on_delete=models.CASCADE, related_name="rooms")
     room_code = models.CharField(max_length=50)
     block = models.CharField(max_length=50, blank=True, null=True)
     floor = models.IntegerField(blank=True, null=True)
+    gender=models.CharField(
+        max_length=10,
+        choices=RoomGender.choices,
+        default=RoomGender.MALE,)
     room_type = models.ForeignKey(RoomType, on_delete=models.PROTECT, related_name="rooms")
     price = models.DecimalField(max_digits=10, decimal_places=2)
     capacity = models.PositiveIntegerField()

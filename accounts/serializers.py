@@ -11,7 +11,7 @@ from .models import (
     Student,
     UserRole,
     UserStatus,
-    StudentGender
+    StudentGender,
 )
 
 User = get_user_model()
@@ -42,6 +42,13 @@ class UserSerializer(serializers.ModelSerializer):
         allow_blank=True,
     )
 
+    # ADDED: Gender belongs to the Student model, not User.
+    gender = serializers.ChoiceField(
+        choices=StudentGender.choices,
+        write_only=True,
+        required=True,
+    )
+
     class Meta:
         model = User
         fields = [
@@ -50,6 +57,7 @@ class UserSerializer(serializers.ModelSerializer):
             "password",
             "full_name",
             "student_id",
+            "gender",
             "phone",
             "role",
             "status",
@@ -87,6 +95,9 @@ class UserSerializer(serializers.ModelSerializer):
         student_id = validated_data.pop("student_id")
         phone = validated_data.pop("phone", "")
 
+        # ADDED: Extract the submitted gender.
+        gender = validated_data.pop("gender")
+
         user = User.objects.create_user(
             password=password,
             role=UserRole.STUDENT,
@@ -99,6 +110,7 @@ class UserSerializer(serializers.ModelSerializer):
             full_name=full_name,
             student_id=student_id,
             phone=phone,
+            gender=gender,  # ADDED: Save gender to the Student record.
         )
 
         return user
@@ -142,7 +154,7 @@ class LoginSerializer(TokenObtainPairSerializer):
         return data
 
 
-#profile update serializer
+# Profile update serializer
 
 class StudentProfileSerializer(serializers.ModelSerializer):
     email = serializers.EmailField(
