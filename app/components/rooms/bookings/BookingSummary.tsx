@@ -50,8 +50,7 @@ export default function BookingSummary({
 
       <button
         type="button"
-        disabled={!selectedBedLabel}
-        onClick={onSubmit}
+disabled={selectedBedLabel === null || selectedBedLabel === ""}        onClick={onSubmit}
         className="mt-6 w-full rounded-xl bg-teal-600 px-5 py-3 font-semibold text-white transition hover:bg-teal-700 disabled:cursor-not-allowed disabled:bg-gray-300"
       >
         Submit Booking Request

@@ -1,8 +1,13 @@
 
 "use client";
 
-import { FormEvent, useState } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
+import * as Yup from "yup";
+
+import FormikForm from "@/app/components/form/FormikForm";
+import FormInput from "@/app/components/form/FormInput";
+import FormSelect from "@/app/components/form/FormSelect";
 
 type BookingEmailModalProps = {
   isOpen: boolean;
@@ -11,6 +16,26 @@ type BookingEmailModalProps = {
   bedId: string;
 };
 
+type BookingEligibilityValues = {
+  email: string;
+  gender: "MALE" | "FEMALE" | "";
+};
+
+type EligibilityResponse = {
+  exists: boolean;
+  eligible: boolean;
+  message?: string;
+};
+
+const validationSchema = Yup.object({
+  email: Yup.string()
+    .email("Enter a valid email address.")
+    .required("Email is required."),
+  gender: Yup.string()
+    .oneOf(["MALE", "FEMALE"], "Select your gender.")
+    .required("Please select your gender."),
+});
+
 export default function BookingEmailModal({
   isOpen,
   onClose,
@@ -18,47 +43,62 @@ export default function BookingEmailModal({
   bedId,
 }: BookingEmailModalProps) {
   const router = useRouter();
-
-  const [email, setEmail] = useState("");
   const [error, setError] = useState("");
   const [isChecking, setIsChecking] = useState(false);
 
   if (!isOpen) return null;
 
-  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+  const initialValues: BookingEligibilityValues = {
+    email: "",
+    gender: "",
+  };
 
-    const normalizedEmail = email.trim().toLowerCase();
-
-    if (!normalizedEmail) {
-      setError("Please enter your email address.");
-      return;
-    }
-
+  const handleSubmit = async (values: BookingEligibilityValues) => {
     setError("");
     setIsChecking(true);
 
     try {
-      // TODO: Replace this request with the Django API endpoint
-      // that checks the email against registered accounts.
-      const response = await fetch("/api/auth/check-email", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email: normalizedEmail }),
-      });
+      const apiBase = process.env.NEXT_PUBLIC_API_URL;
 
-      if (!response.ok) {
-        throw new Error("Unable to check this email. Please try again.");
+      if (!apiBase) {
+        throw new Error("The API URL is not configured.");
       }
 
-      const data: { exists: boolean } = await response.json();
+      const response = await fetch(
+        `${apiBase.replace(/\/+$/, "")}/bookings/check-eligibility/`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: values.email.trim().toLowerCase(),
+            gender: values.gender,
+            room_id: roomId,
+            bed_id: bedId,
+          }),
+        }
+      );
 
-      // Preserve the selected room and bed while the student
-      // registers or logs in.
+      const data = (await response.json()) as EligibilityResponse;
+
+      if (!response.ok) {
+        throw new Error(
+          data.message || "Unable to check this room. Please try again."
+        );
+      }
+
+      if (!data.eligible) {
+        setError(
+          data.message ||
+            "This room or bed is not available for your selection."
+        );
+        return;
+      }
+
       const params = new URLSearchParams({
-        email: normalizedEmail,
+        email: values.email.trim().toLowerCase(),
+        gender: values.gender,
         roomId: String(roomId),
         bedId,
       });
@@ -97,11 +137,11 @@ export default function BookingEmailModal({
               id="booking-email-title"
               className="text-xl font-semibold text-primary"
             >
-              Continue with your email
+              Continue with your booking
             </h2>
-
             <p className="mt-2 text-sm text-on-surface-variant">
-              Enter your email to continue with your room booking.
+              Enter your email and gender so we can check whether this room is
+              suitable before you continue.
             </p>
           </div>
 
@@ -115,45 +155,48 @@ export default function BookingEmailModal({
           </button>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <label
-              htmlFor="booking-email"
-              className="mb-2 block text-sm font-medium text-on-surface"
-            >
-              Email address
-            </label>
-
-            <input
-              id="booking-email"
+        <FormikForm
+          initialValues={initialValues}
+          validationSchema={validationSchema}
+          onSubmit={handleSubmit}
+        >
+          <div className="space-y-4">
+            <FormInput
+              name="email"
+              label="Email address"
               type="email"
-              value={email}
-              onChange={(event) => setEmail(event.target.value)}
-              placeholder="you@example.com"
-              autoComplete="email"
-              required
-              className="w-full rounded-lg border border-outline bg-surface px-4 py-3 text-on-surface outline-none focus:border-primary focus:ring-2 focus:ring-primary/20"
             />
+
+            <FormSelect
+              name="gender"
+              label="Gender"
+              placeholder="Select your gender"
+              options={[
+                { value: "MALE", label: "Male" },
+                { value: "FEMALE", label: "Female" },
+              ]}
+              disabled={isChecking}
+            />
+
+            {error && (
+              <p role="alert" className="text-sm text-red-600">
+                {error}
+              </p>
+            )}
+
+            <button
+              type="submit"
+              disabled={isChecking}
+              className="w-full rounded-lg bg-primary px-4 py-3 font-medium text-on-primary transition-colors hover:bg-tertiary disabled:cursor-not-allowed disabled:opacity-60"
+            >
+              {isChecking ? "Checking room..." : "Continue"}
+            </button>
           </div>
+        </FormikForm>
 
-          {error && (
-            <p role="alert" className="text-sm text-red-600">
-              {error}
-            </p>
-          )}
-
-          <button
-            type="submit"
-            disabled={isChecking}
-            className="w-full rounded-lg bg-primary px-4 py-3 font-medium text-on-primary transition-colors hover:bg-tertiary disabled:cursor-not-allowed disabled:opacity-60"
-          >
-            {isChecking ? "Checking email..." : "Continue"}
-          </button>
-
-          <p className="text-center text-xs text-on-surface-variant">
-            New to TYB? We'll guide you through creating an account.
-          </p>
-        </form>
+        <p className="mt-4 text-center text-xs text-on-surface-variant">
+          New to TYB? We'll guide you through creating an account.
+        </p>
       </div>
     </div>
   );
