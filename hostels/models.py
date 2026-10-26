@@ -63,6 +63,7 @@ class RoomType(models.Model):
 
 #room gender classification
 class RoomGender(models.TextChoices):
+    UNASSIGNED = "UNASSIGNED", "Unassigned"
     MALE = "MALE", "Male"
     FEMALE = "FEMALE", "Female"
 
@@ -74,7 +75,7 @@ class Room(models.Model):
     gender=models.CharField(
         max_length=10,
         choices=RoomGender.choices,
-        default=RoomGender.MALE,)
+        default=RoomGender.UNASSIGNED,)
     room_type = models.ForeignKey(RoomType, on_delete=models.PROTECT, related_name="rooms")
     price = models.DecimalField(max_digits=10, decimal_places=2)
     capacity = models.PositiveIntegerField()
