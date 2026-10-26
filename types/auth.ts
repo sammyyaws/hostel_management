@@ -6,6 +6,7 @@ export interface LoginValues {
 export interface SignupValues {
   fullName: string;
   studentId: string;
+  gender: "MALE" | "FEMALE" | "";
   email: string;
   phone: string;
   password: string;

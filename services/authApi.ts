@@ -4,6 +4,7 @@ import { baseApi } from "./baseApi";
 export interface RegisterRequest {
   full_name: string;
   student_id: string;
+  gender: "MALE" | "FEMALE" | "";
   email: string;
   phone: string;
   password: string;
